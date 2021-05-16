@@ -67,7 +67,8 @@ module ActsAsFu
         end
       end
 
-      alias_method_chain :method_missing, :columns
+      alias_method :method_missing_without_columns, :method_missing
+      alias_method :method_missing, :method_missing_with_columns
     end
 
     klass.class_eval(&block) if block_given?
